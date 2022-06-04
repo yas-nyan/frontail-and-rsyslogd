@@ -20,7 +20,8 @@ services:
       - ./rsyslog/container_config:/config/container_config 
       - ./log:/logs
     ports:
-      - 514:514
+      - 514:514/udp
+      - 514:514/tcp
   samplenginx:
     image: nginx
     volumes:
