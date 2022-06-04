@@ -9,6 +9,11 @@ services:
     command: ["/log/hosts/*/*.log"]
     ports:
       - 9001:9001
+    healthcheck:
+      test: ["CMD-SHELL", "ls", "/log/hosts/*/*.log"]
+      interval: 5s
+      timeout: 10s
+      retries: 10
   rsyslog:
     image: rsyslog/syslog_appliance_alpine
     volumes:
