@@ -2,19 +2,20 @@ version: "3"
 services:
   frontail:
     image: mthenw/frontail:latest
+    restart: unless-stopped
     container_name: frontail
     volumes:
     - ./log:/log
     command: ["/log/hosts/*/*.log"]
     ports:
-      - 127.0.0.1:9001:9001
+      - 9001:9001
   rsyslog:
     image: rsyslog/syslog_appliance_alpine
     volumes:
       - ./rsyslog/container_config:/config/container_config 
       - ./log:/logs
     ports:
-      - 127.0.0.1:514:514
+      - 514:514
   samplenginx:
     image: nginx
     volumes:
